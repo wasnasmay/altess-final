@@ -13,14 +13,18 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://altess.fr'),
-  title: 'ALTESS - Le sens du partage | WebTV, Événementiel, Académie',
-  description: 'ALTESS : votre plateforme culturelle et événementielle. WebTV en direct, orchestres prestigieux, académie de musique, bonnes adresses et voyages.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://votre-altesse.fr'),
+  title: 'Votre Altesse - L\'Excellence au Service du Partage | WebTV, Événementiel, Académie',
+  description: 'Votre Altesse : votre plateforme culturelle et événementielle de prestige. WebTV en direct, orchestres d\'excellence, académie de musique, bonnes adresses et voyages.',
   openGraph: {
+    title: 'Votre Altesse - L\'Excellence au Service du Partage',
+    description: 'Votre plateforme culturelle et événementielle de prestige.',
     images: [{ url: 'https://bolt.new/static/og_default.png' }],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Votre Altesse - L\'Excellence au Service du Partage',
+    description: 'Votre plateforme culturelle et événementielle de prestige.',
     images: [{ url: 'https://bolt.new/static/og_default.png' }],
   },
 };

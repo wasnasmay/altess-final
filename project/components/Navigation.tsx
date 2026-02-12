@@ -110,10 +110,10 @@ export function Navigation() {
             </div>
             <div className="flex flex-col">
               <span className="text-2xl font-serif font-light tracking-wide gold-gradient" style={{ fontFamily: 'Georgia, serif' }}>
-                ALTESS
+                Votre Altesse
               </span>
               <span className="text-[10px] text-primary/60 tracking-wider uppercase -mt-1">
-                Le sens du partage
+                L'Excellence au Service du Partage
               </span>
             </div>
           </Link>

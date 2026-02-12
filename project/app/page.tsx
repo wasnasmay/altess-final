@@ -590,7 +590,7 @@ export default function HomePage() {
                     }`}
                   >
                     <Tv className="w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="font-bold text-base sm:text-lg">Altess TV</span>
+                    <span className="font-bold text-base sm:text-lg">Votre Altesse TV</span>
                   </Button>
                   <Button
                     size="lg"
@@ -606,7 +606,7 @@ export default function HomePage() {
                     }`}
                   >
                     <Radio className="w-5 h-5 sm:w-6 sm:h-6" />
-                    <span className="font-bold text-base sm:text-lg">Altess Radio</span>
+                    <span className="font-bold text-base sm:text-lg">Votre Altesse Radio</span>
                   </Button>
                 </div>
                 <CardContent className="p-0 w-full aspect-video max-h-[70vh] overflow-hidden relative">
@@ -677,7 +677,7 @@ export default function HomePage() {
                               <div className="mx-auto w-64 h-64 relative">
                                 <Image
                                   src="/image_(4).png"
-                                  alt="ALTESS"
+                                  alt="Votre Altesse"
                                   fill
                                   className="object-contain"
                                   priority

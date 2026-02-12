@@ -282,7 +282,7 @@ export default function RadioPage() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Radio className="w-10 h-10 text-amber-500" />
-              <h1 className="text-4xl md:text-5xl font-bold text-white">ALTESS Radio</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white">Votre Altesse Radio</h1>
             </div>
             <p className="text-slate-400 text-lg">Écoutez vos stations préférées en direct</p>
           </div>

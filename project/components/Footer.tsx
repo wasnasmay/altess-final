@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              {settings.site_name || 'ALTESS'}
+              {settings.site_name || 'Votre Altesse'}
             </h3>
             <p className="text-slate-300 mb-4">
               {settings.site_description || 'Le sens du partage - WebTV, WebRadio, Événementiel, Académie & Plus'}
@@ -140,7 +140,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
-          <p>&copy; {currentYear} {settings.copyright_text || 'ALTESS. Tous droits réservés.'}</p>
+          <p>&copy; {currentYear} {settings.copyright_text || 'Votre Altesse. Tous droits réservés.'}</p>
           <p className="mt-2 text-sm">
             {settings.footer_baseline || 'Le sens du partage - Média, Culture & Événementiel'}
           </p>

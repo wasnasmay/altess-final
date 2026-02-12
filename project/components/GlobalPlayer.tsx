@@ -218,12 +218,12 @@ export function GlobalPlayer() {
                 {isMiniMode ? (
                   <div className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500/20 to-amber-600/20 backdrop-blur-md px-2 py-1 rounded-lg border border-amber-500/30">
                     <Tv className="w-3 h-3 text-amber-400" />
-                    <span className="text-white font-bold text-xs tracking-wider">ALTESS TV</span>
+                    <span className="text-white font-bold text-xs tracking-wider">Votre Altesse TV</span>
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-amber-600/20 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-500/30">
                     <Tv className="w-5 h-5 text-amber-400" />
-                    <span className="text-white font-bold text-lg tracking-wider drop-shadow-lg">ALTESS TV</span>
+                    <span className="text-white font-bold text-lg tracking-wider drop-shadow-lg">Votre Altesse TV</span>
                   </div>
                 )}
               </div>

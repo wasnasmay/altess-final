@@ -18,14 +18,14 @@ type SiteSettings = {
 
 const DEFAULT_SETTINGS: SiteSettings = {
   whatsapp_number: '33123456789',
-  contact_email: 'contact@altess.fr',
+  contact_email: 'contact@votre-altesse.fr',
   contact_phone: '+33 1 23 45 67 89',
   contact_address: 'Paris, Île-de-France',
-  site_name: 'ALTESS',
-  site_tagline: 'Le sens du partage',
-  site_description: 'Le sens du partage - WebTV, WebRadio, Événementiel, Académie & Plus',
-  footer_baseline: 'Le sens du partage - Média, Culture & Événementiel',
-  copyright_text: 'ALTESS. Tous droits réservés.',
+  site_name: 'Votre Altesse',
+  site_tagline: 'L\'Excellence au Service du Partage',
+  site_description: 'L\'Excellence au Service du Partage - WebTV, WebRadio, Événementiel, Académie & Plus',
+  footer_baseline: 'L\'Excellence au Service du Partage - Média, Culture & Événementiel',
+  copyright_text: 'Votre Altesse. Tous droits réservés.',
   social_facebook: 'https://facebook.com',
   social_instagram: 'https://instagram.com',
   social_youtube: 'https://youtube.com'
