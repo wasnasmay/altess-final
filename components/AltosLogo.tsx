@@ -76,7 +76,7 @@ export default function AltosLogo({ variant = 'full', className = '', size = 'md
           </div>
         </div>
         <span className={`${textSizeClasses[size]} font-bold bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent tracking-tight`}>
-          ALTESS
+          Votre Altesse
         </span>
       </div>
     );
@@ -98,12 +98,12 @@ export default function AltosLogo({ variant = 'full', className = '', size = 'md
       <div className="flex flex-col">
         <div className="flex items-center gap-2">
           <span className={`${textSizeClasses[size]} font-bold bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent tracking-tight`}>
-            ALTESS
+            Votre Altesse
           </span>
           <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
         </div>
         <span className="text-xs text-amber-400/90 tracking-wide font-semibold -mt-1 italic">
-          Le sens du partage
+          L'Excellence au Service du Partage
         </span>
       </div>
     </div>
@@ -123,7 +123,7 @@ export function AltosLogoText({ className = '', size = 'md' }: { className?: str
       <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 blur-2xl opacity-30 animate-pulse"></div>
       <h1 className={`relative ${textSizes[size]} font-bold`}>
         <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent drop-shadow-2xl">
-          ALTESS
+          Votre Altesse
         </span>
       </h1>
       <div className="absolute -top-2 -right-2">
@@ -146,13 +146,13 @@ export function AltosLogoArabic({ className = '' }: { className?: string }) {
       <div className="flex flex-col items-start">
         <div className="flex items-center gap-3 mb-1">
           <span className="text-4xl font-bold bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent tracking-tight" style={{ fontFamily: 'serif' }}>
-            ALTESS
+            Votre Altesse
           </span>
           <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
         </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-amber-400/90 tracking-wide italic font-semibold">
-            Le sens du partage
+            L'Excellence au Service du Partage
           </span>
           <span className="text-xs text-amber-400/60 tracking-widest uppercase">
             • Web Radio & TV •
@@ -173,7 +173,7 @@ export function AltosLogoMinimal({ className = '' }: { className?: string }) {
         </div>
       </div>
       <span className="text-2xl font-bold bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 bg-clip-text text-transparent">
-        ALTESS
+        Votre Altesse
       </span>
     </div>
   );
