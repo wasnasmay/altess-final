@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════
+🔥 POUR IMED - VERSION 2.0 - 3 ACTIONS URGENTES
+═══════════════════════════════════════════════════════════
+
+1️⃣  SUPABASE - Appliquer le script SQL
+────────────────────────────────────────
+▸ https://supabase.com
+▸ SQL Editor → New query
+▸ Copier/coller : SCRIPT_SQL_COMPLET_RECONSTRUCTION.sql
+▸ Run (Ctrl+Enter)
+
+
+2️⃣  VERCEL - Redeploy sans cache
+────────────────────────────────────────
+▸ https://vercel.com
+▸ altess-final → Deployments
+▸ Dernier → ⋮ → Redeploy
+▸ 🔴 DÉCOCHER "Use existing Build Cache"
+▸ Redeploy
+▸ ATTENDRE 3-5 min
+
+
+3️⃣  NAVIGATEUR - Vider le cache
+────────────────────────────────────────
+▸ Ctrl + Shift + R
+
+
+═══════════════════════════════════════════════════════════
+✅ VÉRIFICATION
+═══════════════════════════════════════════════════════════
+
+Ouvre : https://altess-final.vercel.app
+
+TU DOIS VOIR un badge vert en haut à gauche :
+
+  ┌─────────────────────┐
+  │ Version 2.0 - Stable│  ← CE BADGE
+  └─────────────────────┘
+
+
+SI TU VOIS LE BADGE = ✅ Vercel a déployé la V2.0
+SI PAS DE BADGE     = ❌ Recommence étape 2 et 3
+
+
+═══════════════════════════════════════════════════════════
+
+📄 Guide détaillé : ACTIONS_IMMEDIATES_VERCEL.md
+📄 Script SQL : SCRIPT_SQL_COMPLET_RECONSTRUCTION.sql
+
+═══════════════════════════════════════════════════════════

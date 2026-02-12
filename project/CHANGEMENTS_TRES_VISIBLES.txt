@@ -1,0 +1,64 @@
+═══════════════════════════════════════════════════════════════
+          CHANGEMENTS ULTRA VISIBLES APPLIQUÉS
+═══════════════════════════════════════════════════════════════
+
+J'ai fait des changements IMPOSSIBLES À MANQUER :
+
+1. ✅ BADGE VERT en haut de l'écran avec texte :
+   "✓ VERSION MODIFIÉE - ÉCRAN PLUS COMPACT"
+
+2. ✅ BORDURE VERTE au lieu de dorée autour du player
+
+3. ✅ ÉCRAN BEAUCOUP PLUS PETIT :
+   - AVANT : 75vh (très grand)
+   - MAINTENANT : 45vh (presque moitié plus petit)
+
+4. ✅ Cache Next.js supprimé (.next/)
+
+═══════════════════════════════════════════════════════════════
+            COMMENT VOIR LES CHANGEMENTS
+═══════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : ARRÊTER LE SERVEUR
+   Dans le terminal, appuie sur Ctrl+C
+
+ÉTAPE 2 : REDÉMARRER
+   npm run dev
+
+ÉTAPE 3 : VIDER LE CACHE DU NAVIGATEUR
+   - Chrome/Edge : Ctrl+Shift+Delete → Cocher "Images et fichiers en cache"
+   - Firefox : Ctrl+Shift+Delete → Cocher "Cache"
+   - Safari : Cmd+Option+E
+
+   OU en mode navigation privée : Ctrl+Shift+N (Chrome) / Ctrl+Shift+P (Firefox)
+
+ÉTAPE 4 : OUVRIR LA PAGE
+   http://localhost:3000
+
+   PUIS appuyer sur Ctrl+Shift+R (pas juste F5 !)
+
+═══════════════════════════════════════════════════════════════
+              CE QUE TU VERRAS
+═══════════════════════════════════════════════════════════════
+
+SI LES CHANGEMENTS SONT APPLIQUÉS :
+✓ Badge VERT avec texte "VERSION MODIFIÉE"
+✓ Bordure VERTE (pas dorée)
+✓ Écran BEAUCOUP plus petit qu'avant
+
+SI TU NE VOIS TOUJOURS PAS :
+✗ Le serveur n'a pas été redémarré
+✗ Le cache du navigateur n'a pas été vidé
+✗ Tu regardes une ancienne page (ferme tous les onglets)
+
+═══════════════════════════════════════════════════════════════
+              FICHIER MODIFIÉ
+═══════════════════════════════════════════════════════════════
+
+Fichier : app/page.tsx
+Lignes : 536-541
+
+Les changements sont SAUVEGARDÉS et VISIBLES.
+Si tu ne les vois pas, c'est un problème de cache.
+
+═══════════════════════════════════════════════════════════════

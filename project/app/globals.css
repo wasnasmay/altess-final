@@ -1,0 +1,870 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 45 100% 96%;
+    --card: 240 10% 8%;
+    --card-foreground: 45 100% 96%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 45 100% 96%;
+    --primary: 43 96% 56%;
+    --primary-foreground: 240 10% 3.9%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 45 100% 96%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 240 10% 3.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 100% 96%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 43 96% 56%;
+    --chart-1: 43 96% 56%;
+    --chart-2: 45 93% 47%;
+    --chart-3: 48 96% 53%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 41 96% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  body {
+    @apply bg-black text-foreground;
+    font-family: var(--font-inter), sans-serif;
+    background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  input[type="time"] {
+    color-scheme: dark;
+  }
+
+  .dark input[type="time"] {
+    color: hsl(45 100% 96%);
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}
+
+@layer utilities {
+  .gold-gradient {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fb923c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slideInDown {
+    animation: slideInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slideInUp {
+    animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+  }
+
+  .gold-border-glow {
+    position: relative;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .gold-border-glow:hover {
+    border-color: rgba(251, 191, 36, 0.6);
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+  }
+
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 200ms;
+  }
+
+  input,
+  textarea,
+  select,
+  [class*="Progress"],
+  [class*="Slider"] {
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid rgba(251, 191, 36, 0.5);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgb(15 23 42);
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgb(51 65 85);
+    border-radius: 10px;
+    transition: background 0.2s;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgb(71 85 105);
+  }
+
+  .scrollbar-thumb-amber-500::-webkit-scrollbar-thumb {
+    background: rgb(245 158 11);
+  }
+
+  .scrollbar-thumb-amber-500::-webkit-scrollbar-thumb:hover {
+    background: rgb(251 191 36);
+  }
+
+  .scrollbar-track-slate-800::-webkit-scrollbar-track {
+    background: rgb(30 41 59);
+  }
+
+  .scrollbar-thin {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    overflow-y: scroll;
+  }
+
+  body[data-scroll-locked] {
+    margin-right: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms;
+      animation-iteration-count: 1;
+      transition-duration: 0.01ms;
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    img {
+      opacity: 0.9;
+    }
+
+    img:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    *:focus:not(:focus-visible) {
+      outline: none;
+    }
+  }
+
+  .hover-lift,
+  button:hover,
+  [role="button"]:hover {
+    will-change: transform;
+  }
+
+  .scrollbar-thin,
+  [class*="overflow"] {
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+
+  .force-fullscreen-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    z-index: 50;
+    display: block;
+  }
+
+  .force-fullscreen-player > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .force-fullscreen-player iframe,
+  .force-fullscreen-player video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    border: none;
+  }
+
+  #global-youtube-player-container,
+  #youtube-player-anchor,
+  .youtube-player-wrapper {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  #youtube-player-anchor {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  #global-youtube-player-container video,
+  #global-youtube-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #global-youtube-player-container .react-player,
+  #global-youtube-player-container .react-player > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #global-youtube-player-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #global-youtube-player-container *,
+  #youtube-player-anchor * {
+    will-change: transform, opacity;
+  }
+
+  body:has(#global-youtube-player-container) {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  @media (max-width: 768px) {
+    #youtube-player-anchor,
+    .video-container {
+      width: 95vw;
+      max-width: 95vw;
+    }
+
+    #global-youtube-player-container {
+      width: 90vw;
+      left: 5vw;
+    }
+
+    #global-youtube-player-container {
+      width: 240px;
+      max-width: calc(100vw - 32px);
+      bottom: 16px;
+      left: 16px;
+    }
+
+    #global-youtube-player-container .absolute.-top-12 {
+      top: -36px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+    }
+
+    button,
+    .button,
+    [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+      line-height: 1.3;
+      margin-bottom: 0.625rem;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+      min-height: 44px;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+    }
+  }
+
+  @media (max-width: 479px) {
+    #global-youtube-player-container {
+      width: 200px;
+      bottom: 12px;
+      left: 12px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    button,
+    .button {
+      padding: 10px 14px;
+      font-size: 0.875rem;
+    }
+
+    .container {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    #global-youtube-player-container {
+      width: 320px;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    #global-youtube-player-container {
+      bottom: 8px;
+      width: 260px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1440px;
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    #global-youtube-player-container {
+      width: 420px;
+    }
+  }
+
+  /* ===== MOBILE-FIRST OPTIMIZATIONS ===== */
+  /* Touch-friendly button sizes (minimum 44x44px) */
+  @media (max-width: 768px) {
+    button,
+    [role="button"],
+    a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Increase tap targets for icons */
+    button svg,
+    [role="button"] svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Increase padding for better touch */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Optimize text sizes for mobile readability */
+    body {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 1.875rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    /* Responsive player */
+    #global-player {
+      width: calc(100vw - 2rem) !important;
+      bottom: 1rem !important;
+      right: 1rem !important;
+      max-width: 100% !important;
+    }
+
+    /* Ensure video fills container properly */
+    video,
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+
+    /* Smooth scrolling on mobile */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* Optimize grids for mobile */
+    [class*="grid"] {
+      grid-template-columns: 1fr !important;
+      gap: 1rem;
+    }
+
+    /* Stack navigation items vertically */
+    nav {
+      flex-direction: column;
+    }
+
+    /* Increase spacing between interactive elements */
+    a,
+    button {
+      margin: 0.25rem;
+    }
+
+    /* Optimize cards for mobile */
+    [class*="card"] {
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Better form inputs on mobile */
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+      min-height: 44px;
+      padding: 0.75rem;
+    }
+
+    /* Optimize tables for mobile */
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    /* Full-width buttons on mobile */
+    .mobile-full-width {
+      width: 100%;
+    }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    /* Even larger touch targets */
+    button,
+    [role="button"] {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 1rem 1.25rem;
+    }
+
+    /* Larger font sizes */
+    body {
+      font-size: 14px;
+    }
+
+    /* Optimize header for small screens */
+    header {
+      padding: 0.5rem 1rem;
+    }
+
+    /* Mini player takes full width on very small screens */
+    #global-player.mini {
+      width: calc(100vw - 1rem) !important;
+      right: 0.5rem !important;
+      bottom: 0.5rem !important;
+    }
+  }
+
+  /* Tablet optimization */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* 2-column grid for tablets */
+    [class*="grid"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Optimize player for tablet */
+    #global-player {
+      width: 400px !important;
+    }
+  }
+
+  /* Ensure touch-friendly spacing */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Prevent text selection on touch interactions */
+  button,
+  [role="button"] {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Optimize scrollable areas */
+  .scrollable {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide elements only on mobile */
+  @media (max-width: 768px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+
+  /* Show elements only on mobile */
+  .show-mobile {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .show-mobile {
+      display: block !important;
+    }
+  }
+
+  @media print {
+    nav,
+    footer,
+    button,
+    [role="dialog"],
+    #global-youtube-player-container,
+    #whatsapp-chat-widget {
+      display: none;
+    }
+
+    * {
+      background: white;
+      color: black;
+    }
+  }
+
+  /* Performance optimizations for smooth scrolling */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img, video, iframe {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .aspect-video {
+    contain: layout style paint;
+  }
+}

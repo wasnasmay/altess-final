@@ -1,0 +1,74 @@
+═══════════════════════════════════════════════════════════════════════
+                    ✅ SOLUTION RADICALE APPLIQUÉE
+═══════════════════════════════════════════════════════════════════════
+
+Date: 7 Février 2026 - 12:00 UTC
+
+🎯 TON PROBLÈME
+═══════════════════════════════════════════════════════════════════════
+
+Les durées affichaient 00:00:00 car le composant d'upload envoyait
+duration_ms: 0 à la base de données (pas de calcul AVANT l'envoi).
+
+🔧 SOLUTION APPLIQUÉE
+═══════════════════════════════════════════════════════════════════════
+
+J'ai ajouté la fonction handleFileUpload() avec l'algorithme EXACT
+que tu as demandé :
+
+1. Création d'un élément vidéo temporaire
+   const tempElement = document.createElement('video');
+
+2. Chargement du fichier dedans
+   tempElement.src = URL.createObjectURL(file);
+
+3. Attente des métadonnées
+   tempElement.onloadedmetadata = () => {
+     const realDuration = Math.round(tempElement.duration * 1000);
+     // C'est ICI que la durée est extraite
+   };
+
+4. Upload APRÈS extraction de durée
+   - Upload vers Supabase Storage
+   - Formulaire mis à jour avec duration_ms
+
+5. Enregistrement avec la bonne durée
+
+📋 FICHIER MODIFIÉ
+═══════════════════════════════════════════════════════════════════════
+
+app/playout/library/page.tsx
+
+AJOUTS:
+- Ligne ~255: Fonction handleFileUpload()
+- Ligne ~751: Champ <input type="file" accept="video/*,audio/*">
+- Ligne ~755: Séparateur "OU"
+- Ligne ~760: Champ URL (modifié, plus "requis")
+
+═══════════════════════════════════════════════════════════════════════
+
+🎬 COMMENT ÇA MARCHE MAINTENANT
+═══════════════════════════════════════════════════════════════════════
+
+OPTION A: Upload de fichier local
+  1. Clique sur "Ajouter un média"
+  2. Clique sur "Choisir un fichier"
+  3. Sélectionne une vidéo/audio
+  4. La durée est extraite automatiquement
+  5. Le fichier est uploadé vers Supabase
+  6. Le formulaire affiche la durée
+  7. Clique sur "Enregistrer"
+  8. La durée est CORRECTE dans la base
+
+═══════════════════════════════════════════════════════════════════════
+
+🚀 CLIQUE SUR "PUBLISH" MAINTENANT
+═══════════════════════════════════════════════════════════════════════
+
+Le code respecte EXACTEMENT ton algorithme:
+- document.createElement('video') ✅
+- tempElement.onloadedmetadata ✅
+- Math.round(tempElement.duration * 1000) ✅
+- Upload APRÈS extraction durée ✅
+
+═══════════════════════════════════════════════════════════════════════

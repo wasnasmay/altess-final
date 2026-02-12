@@ -1,0 +1,91 @@
+# ═══════════════════════════════════════════════════════════════════════
+# VARIABLES D'ENVIRONNEMENT POUR VERCEL
+# ═══════════════════════════════════════════════════════════════════════
+# Copiez-collez ces variables dans Vercel Dashboard:
+# Settings > Environment Variables > Add New
+# ═══════════════════════════════════════════════════════════════════════
+
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │ 1. NEXT_PUBLIC_SUPABASE_URL                                         │
+# └─────────────────────────────────────────────────────────────────────┘
+# Name: NEXT_PUBLIC_SUPABASE_URL
+# Value: https://cbqiebxitsvknnnqscbz.supabase.co
+# Environment: Production, Preview, Development (cochez les 3)
+
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │ 2. NEXT_PUBLIC_SUPABASE_ANON_KEY                                    │
+# └─────────────────────────────────────────────────────────────────────┘
+# Name: NEXT_PUBLIC_SUPABASE_ANON_KEY
+# Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWllYnhpdHN2a25ubnFzY2J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcxNzE0MDQsImV4cCI6MjA1Mjc0NzQwNH0.mC6HHg8JJ-gWwYWs-Kct7C6dV23bYFOAoq38MILt-kY
+# Environment: Production, Preview, Development (cochez les 3)
+
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │ 3. STRIPE_SECRET_KEY (Si vous utilisez Stripe)                     │
+# └─────────────────────────────────────────────────────────────────────┘
+# Name: STRIPE_SECRET_KEY
+# Value: [Votre clé Stripe depuis dashboard.stripe.com/apikeys]
+# Environment: Production uniquement
+# Note: Laissez vide si vous n'utilisez pas Stripe
+
+# ┌─────────────────────────────────────────────────────────────────────┐
+# │ 4. STRIPE_WEBHOOK_SECRET (Si vous utilisez Stripe)                 │
+# └─────────────────────────────────────────────────────────────────────┘
+# Name: STRIPE_WEBHOOK_SECRET
+# Value: [Votre webhook secret depuis dashboard.stripe.com/webhooks]
+# Environment: Production uniquement
+# Note: Laissez vide si vous n'utilisez pas Stripe
+
+# ═══════════════════════════════════════════════════════════════════════
+# INSTRUCTIONS VERCEL
+# ═══════════════════════════════════════════════════════════════════════
+
+# 1. Allez sur votre projet Vercel
+# 2. Cliquez sur "Settings" dans le menu du haut
+# 3. Cliquez sur "Environment Variables" dans le menu de gauche
+# 4. Pour chaque variable ci-dessus :
+#    a. Cliquez "Add New"
+#    b. Copiez le "Name" exactement (avec NEXT_PUBLIC_ si présent)
+#    c. Collez la "Value"
+#    d. Cochez les 3 environnements (Production, Preview, Development)
+#    e. Cliquez "Save"
+# 5. Une fois toutes les variables ajoutées, cliquez "Redeploy" sur votre dernier déploiement
+
+# ═══════════════════════════════════════════════════════════════════════
+# VÉRIFICATION
+# ═══════════════════════════════════════════════════════════════════════
+
+# Après avoir ajouté les variables et redéployé, testez :
+# https://votre-domaine.vercel.app/api/diagnostic/health
+
+# Réponse attendue :
+# {
+#   "overall_status": "healthy",
+#   "supabase_url": "https://cbqiebxitsvknnnqscbz.supabase.co",
+#   "anon_key_present": true
+# }
+
+# ═══════════════════════════════════════════════════════════════════════
+# PROBLÈMES COURANTS
+# ═══════════════════════════════════════════════════════════════════════
+
+# ❌ ERREUR: "process.env.NEXT_PUBLIC_SUPABASE_URL is undefined"
+# ✅ SOLUTION: Vous avez oublié le préfixe NEXT_PUBLIC_ ou mal orthographié
+
+# ❌ ERREUR: "Invalid API key"
+# ✅ SOLUTION: Vérifiez que vous avez copié la clé ANON (pas SERVICE_ROLE)
+
+# ❌ ERREUR: "Variables not taking effect"
+# ✅ SOLUTION: Redéployez après avoir ajouté les variables
+
+# ═══════════════════════════════════════════════════════════════════════
+# IMPORTANT
+# ═══════════════════════════════════════════════════════════════════════
+
+# ⚠️  NEXT_PUBLIC_ = Variables exposées au client (navigateur)
+# ⚠️  Sans NEXT_PUBLIC_ = Variables serveur uniquement (API Routes)
+# ⚠️  Les clés Stripe doivent TOUJOURS être serveur uniquement (sans NEXT_PUBLIC_)
+# ⚠️  Redéploiement obligatoire après ajout de variables
+
+# ═══════════════════════════════════════════════════════════════════════
+# FIN DU FICHIER
+# ═══════════════════════════════════════════════════════════════════════

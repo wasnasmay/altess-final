@@ -1,0 +1,137 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                   🚨 SYNCHRONISATION BOLT → GITHUB → VERCEL                  ║
+║                                                                               ║
+║  SITUATION: Tu utilises l'interface web Bolt uniquement                     ║
+║  SOLUTION: Utiliser l'interface Bolt pour pusher vers GitHub                ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ÉTAPE 1: REGARDER L'INTERFACE BOLT                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Dans l'interface Bolt (en haut de la page), cherche UN DE CES BOUTONS:
+
+   🔍 Bouton "Share" ou "Partager"
+   🔍 Bouton "Deploy" ou "Déployer"
+   🔍 Bouton "Push to GitHub"
+   🔍 Bouton "Connect to GitHub"
+   🔍 Icône GitHub (logo)
+   🔍 Menu "..." ou "⋮" (trois points)
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ÉTAPE 2: CONNECTER À GITHUB                                                ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Une fois que tu as cliqué sur le bouton, Bolt te demandera:
+
+   📝 Nom du repository GitHub (exemple: altess-platform)
+   📝 Description (exemple: "ALTESS Platform v0.1.7")
+   📝 Public ou Private (choisis selon ta préférence)
+
+Options possibles:
+
+   OPTION A: Créer un nouveau repository
+   ─────────────────────────────────────
+   Si tu n'as pas encore de repo GitHub:
+   1. Clique sur "Create new repository"
+   2. Entre le nom: altess-platform
+   3. Bolt créera le repo et poussera tout automatiquement
+
+   OPTION B: Connecter à un repository existant
+   ────────────────────────────────────────────
+   Si tu as déjà un repo GitHub:
+   1. Clique sur "Connect to existing repository"
+   2. Choisis ton repo dans la liste
+   3. Bolt te demandera peut-être l'autorisation
+   4. Accepte et Bolt poussera les fichiers
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ÉTAPE 3: AUTORISER BOLT                                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+GitHub va te demander d'autoriser Bolt:
+
+   1. Une popup GitHub va s'ouvrir
+   2. GitHub te demande: "Authorize StackBlitz?" ou "Authorize Bolt?"
+   3. Clique sur "Authorize" (Autoriser)
+   4. GitHub te demandera peut-être ton mot de passe
+   5. Entre ton mot de passe GitHub
+   6. Clique sur "Confirm"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ÉTAPE 4: POUSSER VERS GITHUB                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Une fois connecté, Bolt va:
+
+   ✅ Créer un commit avec tous tes fichiers
+   ✅ Pousser vers GitHub automatiquement
+   ✅ Te montrer un lien vers ton repository
+
+Message de commit suggéré:
+   "🔄 FORCE SYNC v0.1.7 - Header et MediaLibrary restaurés"
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ÉTAPE 5: CONNECTER VERCEL À GITHUB                                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Si Vercel n'est pas déjà connecté à ton repo GitHub:
+
+   1. Va sur vercel.com
+   2. Clique sur "Add New..." → "Project"
+   3. Clique sur "Import Git Repository"
+   4. Choisis ton repository (altess-platform)
+   5. Clique sur "Import"
+   6. Vercel va détecter Next.js automatiquement
+   7. Clique sur "Deploy"
+
+Si Vercel est déjà connecté:
+   ✅ Vercel détectera automatiquement le push GitHub
+   ✅ Un nouveau déploiement se lancera dans 30 secondes
+   ✅ Attends 2-3 minutes pour le build
+   ✅ Ton site sera mis à jour avec le menu complet
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ALTERNATIVE: TÉLÉCHARGER ET UPLOADER MANUELLEMENT                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Si les boutons ne fonctionnent pas, voici une alternative:
+
+MÉTHODE A: Télécharger le projet depuis Bolt
+   1. Dans Bolt, cherche "Download" ou "Export"
+   2. Télécharge le projet en ZIP
+   3. Va sur github.com
+   4. Va dans ton repository
+   5. Clique sur "Upload files"
+   6. Glisse tous les fichiers du ZIP
+   7. Écris le message: "Force sync v0.1.7"
+   8. Clique sur "Commit changes"
+
+MÉTHODE B: Utiliser l'interface GitHub directement
+   1. Va sur github.com et ouvre ton repository
+   2. Pour chaque fichier modifié:
+      - Clique sur le fichier
+      - Clique sur l'icône "crayon" (Edit)
+      - Copie le contenu depuis Bolt
+      - Colle dans GitHub
+      - Clique sur "Commit changes"
+
+   Fichiers critiques à copier:
+   ✓ components/Header.tsx
+   ✓ components/PlayoutMediaLibrary.tsx
+   ✓ package.json
+   ✓ 8 fichiers dans app/api/**/route.ts (Stripe)
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ FICHIERS MODIFIÉS DANS CETTE VERSION                                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+✅ components/Header.tsx (11.6 KB)
+✅ components/PlayoutMediaLibrary.tsx
+✅ package.json (version 0.1.7)
+✅ 8 fichiers API Stripe (API Version 2026-01-28.clover)
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  📢 DIS-MOI CE QUE TU VOIS DANS TON INTERFACE BOLT                          ║
+║     ET JE TE GUIDERAI ÉTAPE PAR ÉTAPE!                                      ║
+╚═══════════════════════════════════════════════════════════════════════════════╝

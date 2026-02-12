@@ -1,0 +1,28 @@
+VERSION 137 - PLAYOUT LAYOUT
+
+Structure actuelle du fichier app/playout/page.tsx :
+
+1. BANDEAU VERSION (ligne ~445)
+   - Bandeau orange "VERSION 137 - LAYOUT PLEINE LARGEUR ACTIF"
+   - Preuve visuelle que le nouveau layout est chargé
+
+2. CARD PREVIEW VIDÉO (lignes ~447-574)
+   - Prend 100% de la largeur (pas de grille)
+   - Aspect ratio 16:9 maintenu
+   - Contrôles Play/Pause/Stop/Next en dessous
+
+3. CARD PROGRAMMES À VENIR (lignes ~576-679)
+   - Bordure verte en haut pour identification visuelle
+   - Titre: "Programmes à venir - BARRE HORIZONTALE"
+   - Layout: flex avec overflow-x-auto
+   - Miniatures de 256px (w-64) défilant horizontalement
+   - ScrollBar verte personnalisée
+
+PAS DE GRILLE grid-cols-3 dans ce fichier !
+Layout vertical simple avec space-y-6.
+
+Pour vérifier que le cache est bien vidé, cherchez :
+- Le bandeau orange "VERSION 137" en haut
+- Le texte "BARRE HORIZONTALE" dans le titre
+- La bordure verte en haut de la card programmes
+# Force Vercel Rebuild Mon Feb  2 14:40:26 UTC 2026

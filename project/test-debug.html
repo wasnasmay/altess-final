@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug WebTV</title>
+</head>
+<body>
+  <h1>Test Debug</h1>
+  <div id="result"></div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const supabaseUrl = 'VOTRE_SUPABASE_URL';
+    const supabaseKey = 'VOTRE_SUPABASE_ANON_KEY';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    async function test() {
+      const now = new Date();
+      const dateStr = now.toISOString().split('T')[0];
+      const timeStr = now.toTimeString().split(' ')[0];
+
+      console.log('Date:', dateStr, 'Heure:', timeStr);
+
+      const { data, error } = await supabase
+        .from('playout_schedule')
+        .select(`
+          *,
+          media:media_id (
+            id,
+            title,
+            source_url,
+            media_type,
+            thumbnail_url,
+            duration_seconds
+          )
+        `)
+        .eq('channel_type', 'webtv')
+        .eq('scheduled_date', dateStr);
+
+      if (error) {
+        document.getElementById('result').innerHTML = `<pre style="color:red">${JSON.stringify(error, null, 2)}</pre>`;
+      } else {
+        document.getElementById('result').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      }
+    }
+
+    test();
+  </script>
+</body>
+</html>

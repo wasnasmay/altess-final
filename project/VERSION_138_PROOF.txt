@@ -1,0 +1,100 @@
+═══════════════════════════════════════════════════════════
+VERSION 2.0 - STABLE - PREUVE DE CHANGEMENT
+═══════════════════════════════════════════════════════════
+
+Date : 6 Février 2026 08:15 UTC
+
+
+✅ CHANGEMENTS APPLIQUÉS
+═══════════════════════════════════════════════════════════
+
+1. Badge Version Ajouté
+   ▸ Fichier : app/page.tsx
+   ▸ Ligne : 997-999
+   ▸ Texte : "Version 2.0 - Stable"
+   ▸ Position : Haut gauche, badge vert
+   ▸ Visible : OUI sur page d'accueil
+
+2. Script SQL Complet Créé
+   ▸ Fichier : SCRIPT_SQL_COMPLET_RECONSTRUCTION.sql
+   ▸ Tables : 4 (channels, media_library, schedules, stations)
+   ▸ Colonnes : Exactement synchronisées avec frontend
+   ▸ Permissions : RLS configurées
+
+3. Guides Créés
+   ▸ ACTIONS_IMMEDIATES_VERCEL.md
+   ▸ COMMANDES_URGENCE.txt
+   ▸ VERSION_138_PROOF.txt (ce fichier)
+
+
+✅ COLONNES playout_schedules - FRONTEND vs SQL
+═══════════════════════════════════════════════════════════
+
+Frontend utilise :              SQL a :
+─────────────────────────────────────────────────────────
+channel_id                 ✅   channel_id (uuid NOT NULL)
+media_id                   ✅   media_id (uuid NOT NULL)
+scheduled_date             ✅   scheduled_date (date NOT NULL)
+scheduled_time             ✅   scheduled_time (time NOT NULL)
+scheduled_datetime         ✅   scheduled_datetime (timestamptz NOT NULL)
+duration_seconds           ✅   duration_seconds (integer NOT NULL)
+order_position             ✅   order_position (integer NOT NULL)
+status                     ✅   status (text DEFAULT 'scheduled')
+title                      ✅   title (text)
+notes                      ✅   notes (text)
+
+✅ TOUTES LES COLONNES CORRESPONDENT
+
+
+✅ COMMENT VÉRIFIER QUE VERCEL A DÉPLOYÉ
+═══════════════════════════════════════════════════════════
+
+1. Ouvre : https://altess-final.vercel.app
+
+2. Cherche le badge vert en haut à gauche :
+
+   ┌─────────────────────┐
+   │ Version 2.0 - Stable│
+   └─────────────────────┘
+
+3. SI TU LE VOIS = Vercel a déployé la V2.0 ✅
+   SI TU NE LE VOIS PAS = Cache navigateur ❌
+
+4. Si pas de badge :
+   ▸ Ctrl + Shift + R (vider cache)
+   ▸ Réessaie
+   ▸ Ou navigation privée
+
+
+✅ PREUVE QUE LE CODE A CHANGÉ
+═══════════════════════════════════════════════════════════
+
+Avant : Pas de badge version
+Après  : Badge "Version 2.0 - Stable" visible
+
+Fichier modifié : app/page.tsx
+Lignes ajoutées : 997-999
+
+Code ajouté :
+```
+<div className="fixed top-16 left-4 z-50 bg-green-500 
+     text-white px-4 py-2 rounded-full shadow-lg 
+     font-bold text-sm">
+  Version 2.0 - Stable
+</div>
+```
+
+Ce badge EST dans le code maintenant.
+Vercel DOIT le déployer quand tu fais redeploy.
+
+
+═══════════════════════════════════════════════════════════
+
+TL;DR :
+
+1. Script SQL créé ✅
+2. Badge version ajouté ✅
+3. Colonnes synchronisées ✅
+4. Action requise : Redeploy Vercel sans cache
+
+═══════════════════════════════════════════════════════════

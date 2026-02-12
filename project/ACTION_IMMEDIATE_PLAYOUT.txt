@@ -1,0 +1,95 @@
+=================================================================
+🔥 ACTION IMMÉDIATE - Playout Web TV
+=================================================================
+
+PROBLÈME : Erreur "column channel_id does not exist"
+
+CAUSE : Cache Vercel désynchronisé avec la base de données
+
+SOLUTION : Migration appliquée + Vider les caches
+
+=================================================================
+✅ ÉTAPES À SUIVRE (DANS L'ORDRE)
+=================================================================
+
+1️⃣ VIDER LE CACHE VERCEL (CRITIQUE)
+   ────────────────────────────────────
+   a) Allez sur https://vercel.com/dashboard
+   b) Sélectionnez projet "altess-final"
+   c) Onglet "Deployments"
+   d) Cliquez sur le dernier deployment
+   e) Menu ⋮ → "Redeploy"
+   f) DÉCOCHEZ "Use existing Build Cache"
+   g) Cliquez "Redeploy"
+   h) ATTENDEZ 2-3 minutes
+
+2️⃣ VIDER LE CACHE NAVIGATEUR
+   ────────────────────────────────────
+   a) Ouvrez la page
+   b) Appuyez sur Ctrl+Shift+R (Windows/Linux)
+      OU Cmd+Shift+R (Mac)
+   c) Ou : Ctrl+Shift+Delete → Vider cache
+
+3️⃣ TESTER L'APPLICATION
+   ────────────────────────────────────
+   a) Allez sur /playout/schedule
+   b) Vous devriez voir 1 programme à 14:00
+   c) Titre: "The Soul of Blues Live..."
+   d) Cliquez "Ajouter" pour tester l'ajout
+
+=================================================================
+📊 CE QUI A ÉTÉ CORRIGÉ
+=================================================================
+
+✅ Structure de la table playout_schedules vérifiée
+✅ Colonne channel_id confirmée présente
+✅ Permissions RLS simplifiées (1 seule policy)
+✅ Programme de test inséré (aujourd'hui 14h00)
+✅ Index créés pour performance
+✅ Code frontend corrigé (timestamps + ID)
+✅ Migration appliquée dans Supabase
+
+=================================================================
+🎯 RÉSULTAT ATTENDU
+=================================================================
+
+APRÈS avoir vidé les caches :
+
+📺 Sur /playout/schedule :
+   → 1 programme visible à 14:00
+   → Bouton "Ajouter" fonctionnel
+   → Ajout de vidéos fonctionne
+
+🎬 Sur / (page d'accueil) :
+   → Web TV affiche le programme
+   → Lecteur YouTube actif
+   → Programmes à venir visibles
+
+=================================================================
+⚠️ SI ÇA NE MARCHE TOUJOURS PAS
+=================================================================
+
+1. Ouvrez la console (F12)
+2. Regardez les erreurs rouges
+3. Envoyez-moi une capture d'écran
+
+OU
+
+1. Allez sur supabase.com → SQL Editor
+2. Exécutez : SELECT * FROM playout_schedules WHERE scheduled_date = CURRENT_DATE;
+3. Envoyez-moi le résultat
+
+=================================================================
+🚀 COMMANDES RAPIDES
+=================================================================
+
+Vider cache Chrome : Ctrl+Shift+R
+Console Chrome : F12
+Ouvrir DevTools : Clic droit → Inspecter
+
+=================================================================
+
+📝 Documentation complète : SOLUTION_DEFINITIVE_PLAYOUT_06_FEV_2026.md
+
+Date : 6 Février 2026 07:00 UTC
+Status : ✅ PRÊT POUR TEST

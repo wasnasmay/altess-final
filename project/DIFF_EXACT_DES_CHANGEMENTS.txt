@@ -1,0 +1,154 @@
+═══════════════════════════════════════════════════════════════
+  📝 DIFF EXACT DES MODIFICATIONS
+═══════════════════════════════════════════════════════════════
+
+FICHIER 1: components/WhatsAppChat.tsx
+───────────────────────────────────────────────────────────────
+
+LIGNE 60 (Card z-index):
+AVANT:  <Card className="fixed bottom-24 left-6 w-80 shadow-2xl z-40 animate-in slide-in-from-bottom-4">
+APRÈS:  <Card className="fixed bottom-24 left-6 w-80 shadow-2xl z-[99999] animate-in slide-in-from-bottom-4">
+        ═══════════════════════════════════════════════╬════════════════════════════════════════════
+                                                       z-40 → z-[99999]
+
+LIGNE 94 (Button z-index):
+AVANT:  className="fixed bottom-6 left-6 h-14 w-14 rounded-full shadow-2xl bg-green-600 hover:bg-green-700 z-50 transition-transform hover:scale-110"
+APRÈS:  className="fixed bottom-6 left-6 h-14 w-14 rounded-full shadow-2xl bg-green-600 hover:bg-green-700 z-[100000] transition-transform hover:scale-110"
+        ═════════════════════════════════════════════════════════════════════════════════════════════════╬══════════════════════════════════════════
+                                                                                                          z-50 → z-[100000]
+
+
+═══════════════════════════════════════════════════════════════
+
+FICHIER 2: components/PlayoutMediaLibrary.tsx
+───────────────────────────────────────────────────────────────
+
+AJOUT APRÈS LIGNE 318 (fonction formatDuration):
+
+  // Force l'attente des métadonnées AVANT de remplir le champ
+  const loadVideoDuration = (file: File): Promise<number> => {
+    return new Promise((resolve) => {
+      const video = document.createElement('video');
+      video.preload = 'metadata';
+      video.onloadedmetadata = () => {
+        window.URL.revokeObjectURL(video.src);
+        const durationInSeconds = Math.floor(video.duration);
+        resolve(durationInSeconds);
+      };
+      video.onerror = () => {
+        console.warn('Impossible de charger les métadonnées de la vidéo');
+        resolve(0);
+      };
+      video.src = URL.createObjectURL(file);
+    });
+  };
+
+═══════════════════════════════════════════════════════════════
+
+LIGNE 387-398 (onChange du file input):
+
+AVANT:
+                  <Input
+                    type="file"
+                    accept="video/*,audio/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setSelectedFile(file);
+                        if (!formData.title) {
+                          setFormData({ ...formData, title: file.name.replace(/\.[^/.]+$/, '') });
+                        }
+                      }
+                    }}
+                    disabled={uploadingFile}
+                  />
+
+APRÈS:
+                  <Input
+                    type="file"
+                    accept="video/*,audio/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setSelectedFile(file);
+
+                        // Remplir le titre si vide
+                        if (!formData.title) {
+                          setFormData({ ...formData, title: file.name.replace(/\.[^/.]+$/, '') });
+                        }
+
+                        // Détecter automatiquement la durée pour les vidéos
+                        if (file.type.startsWith('video/')) {
+                          toast.info('Détection de la durée en cours...');
+                          const durationInSeconds = await loadVideoDuration(file);
+
+                          if (durationInSeconds > 0) {
+                            setFormData(prev => ({
+                              ...prev,
+                              duration_seconds: durationInSeconds
+                            }));
+                            toast.success(`✅ Durée détectée: ${formatDuration(durationInSeconds)}`);
+                          } else {
+                            toast.warning('⚠️ Durée non détectée. Vous pouvez la saisir manuellement.');
+                          }
+                        }
+                      }
+                    }}
+                    disabled={uploadingFile}
+                  />
+
+CHANGEMENTS:
+  1. onChange={(e) => {  →  onChange={async (e) => {
+  2. Ajout détection automatique durée (lignes 417-431)
+
+═══════════════════════════════════════════════════════════════
+
+LIGNE 442-449 (Label du champ durée):
+
+AVANT:
+              <div>
+                <Label>Durée (secondes)</Label>
+                <Input
+                  type="number"
+                  value={formData.duration_seconds}
+                  onChange={(e) => setFormData({ ...formData, duration_seconds: parseInt(e.target.value) || 0 })}
+                  placeholder="0"
+                />
+              </div>
+
+APRÈS:
+              <div>
+                <Label>Durée (secondes) {formData.source_type === 'upload' && '- Détection automatique'}</Label>
+                <Input
+                  type="number"
+                  value={formData.duration_seconds}
+                  onChange={(e) => setFormData({ ...formData, duration_seconds: parseInt(e.target.value) || 0 })}
+                  placeholder="0"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  {formData.source_type === 'upload'
+                    ? 'La durée est détectée automatiquement lors de la sélection du fichier. Vous pouvez la modifier si nécessaire.'
+                    : 'Entrez la durée manuellement ou utilisez l\'import automatique pour YouTube/Vimeo.'}
+                </p>
+              </div>
+
+CHANGEMENTS:
+  1. Label enrichi avec condition "- Détection automatique"
+  2. Ajout info-bulle explicative (p tag)
+
+
+═══════════════════════════════════════════════════════════════
+  RÉSUMÉ
+═══════════════════════════════════════════════════════════════
+
+FICHIERS MODIFIÉS: 2
+LIGNES MODIFIÉES: 5 zones
+LIGNES AJOUTÉES: ~50 lignes (fonction + détection + info-bulle)
+
+IMPACT:
+  ✅ WhatsApp toujours visible (z-index corrigé)
+  ✅ Durée vidéo auto-détectée avec Promise
+  ✅ UX améliorée avec toasts et info-bulles
+
+
+═══════════════════════════════════════════════════════════════

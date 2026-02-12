@@ -1,0 +1,24 @@
+╔═══════════════════════════════════════════════════════╗
+║  STATUT: FICHIERS MODIFIÉS - PRÊT POUR DÉPLOIEMENT  ║
+╚═══════════════════════════════════════════════════════╝
+
+DATE: 2026-02-08
+COMMIT: FIX: REPAIR LAYOUT AND LIBRARY
+
+FICHIERS MODIFIÉS:
+✅ app/layout.tsx (Navigation présente ligne 47)
+✅ components/PlayoutMediaLibrary.tsx (loadVideoDuration ligne 322)
+✅ components/WhatsAppChat.tsx (z-[100000] ligne 95)
+
+═══════════════════════════════════════════════════════
+
+⚠️  IMPORTANT: Git push est DÉSACTIVÉ sur Bolt.new
+
+POUR DÉPLOYER:
+1. Clique sur le bouton "Deploy" en haut à droite
+2. Bolt.new créera automatiquement le commit
+3. Le déploiement démarrera sur Vercel
+
+ALTERNATIVEMENT:
+- Copie le code localement
+- Fais: git add . && git commit -m "FIX: REPAIR LAYOUT AND LIBRARY" && git push

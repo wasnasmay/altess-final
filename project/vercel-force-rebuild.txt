@@ -1,0 +1,6 @@
+VERCEL FORCE REBUILD TRIGGER
+Timestamp: 2026-02-06T07:45:00Z
+Build: CRITICAL_FIX_PLAYOUT_SYSTEM
+Changes: playout_schedules timestamp format + migration applied
+
+This file forces Vercel to detect changes and rebuild.

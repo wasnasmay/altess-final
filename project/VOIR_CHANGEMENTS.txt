@@ -1,0 +1,56 @@
+═══════════════════════════════════════════════════════════════
+              COMMENT VOIR LES CHANGEMENTS
+═══════════════════════════════════════════════════════════════
+
+✅ MES CHANGEMENTS SONT BIEN SAUVEGARDÉS !
+
+J'ai vérifié : la ligne 538 de app/page.tsx contient bien :
+h-[60vh] min-h-[400px] sm:min-h-[450px] max-h-[650px]
+
+═══════════════════════════════════════════════════════════════
+              ÉTAPES POUR VOIR LE RÉSULTAT
+═══════════════════════════════════════════════════════════════
+
+1. ARRÊTER LE SERVEUR
+   Dans ton terminal où tourne "npm run dev", appuie sur Ctrl+C
+
+2. REDÉMARRER LE SERVEUR
+   npm run dev
+
+3. DANS TON NAVIGATEUR
+   - Ouvre http://localhost:3000
+   - Appuie sur Ctrl+Shift+R (Windows/Linux)
+   - Ou Cmd+Shift+R (Mac)
+
+   ⚠️ NE PAS utiliser juste F5 ou Ctrl+R car le cache ne sera pas vidé !
+
+═══════════════════════════════════════════════════════════════
+                CE QUE TU VERRAS
+═══════════════════════════════════════════════════════════════
+
+AVANT :
+├─ Écran TRÈS GRAND (75% de la hauteur)
+├─ Minimum 500px mobile / 600px desktop
+└─ Maximum 800px
+
+APRÈS (MES CHANGEMENTS) :
+├─ Écran PLUS COMPACT (60% de la hauteur) ✅
+├─ Minimum 400px mobile / 450px desktop ✅
+└─ Maximum 650px ✅
+
+LOGO ALTESS TV :
+├─ Visible en HAUT À GAUCHE de l'écran ✅
+├─ Badge doré avec icône TV ✅
+└─ En mode plein écran ET mini ✅
+
+═══════════════════════════════════════════════════════════════
+
+FICHIER MODIFIÉ : app/page.tsx (ligne 538)
+CACHE NEXT.JS : Supprimé par moi (dossier .next)
+
+SI TU NE VOIS TOUJOURS PAS LES CHANGEMENTS :
+- Vide le cache de ton navigateur (Ctrl+Shift+Delete)
+- Ferme et réouvre le navigateur
+- Essaie en mode navigation privée
+
+═══════════════════════════════════════════════════════════════

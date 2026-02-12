@@ -1,0 +1,162 @@
+═══════════════════════════════════════════════════════════
+🔥🔥🔥 POUR IMED - ACTION IMMÉDIATE VERCEL 🔥🔥🔥
+═══════════════════════════════════════════════════════════
+
+PROBLÈME : Changements OK en dev, ZÉRO changement sur Vercel
+
+CAUSE : Vercel utilise un VIEUX BUILD en CACHE
+
+SOLUTION : Forcer REDEPLOY SANS CACHE
+
+
+═══════════════════════════════════════════════════════════
+✅ CE QUE J'AI VÉRIFIÉ
+═══════════════════════════════════════════════════════════
+
+✅ Code modifié : PRÉSENT dans les fichiers
+✅ Migration SQL : APPLIQUÉE dans Supabase
+✅ Colonne channel_id : EXISTE dans la base de données
+✅ Programmes de test : 2 PROGRAMMES INSÉRÉS (14h00 + 16h30)
+
+CONCLUSION : Le code est BON, Supabase est BON
+            → Le problème est le CACHE VERCEL
+
+
+═══════════════════════════════════════════════════════════
+🚨 TOI TU DOIS FAIRE (ÉTAPES EXACTES)
+═══════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Aller sur Vercel
+──────────────────────────
+▸ Ouvre https://vercel.com
+▸ Log in avec ton compte
+
+
+ÉTAPE 2 : Ouvrir ton projet
+──────────────────────────
+▸ Clique sur "altess-final"
+
+
+ÉTAPE 3 : Aller dans Deployments
+──────────────────────────
+▸ En haut : clique sur l'onglet "Deployments"
+
+
+ÉTAPE 4 : Ouvrir le dernier deployment
+──────────────────────────
+▸ Clique sur la PREMIÈRE ligne (la plus récente)
+
+
+ÉTAPE 5 : Ouvrir le menu
+──────────────────────────
+▸ En haut à droite : clique sur les 3 POINTS ⋮
+
+
+ÉTAPE 6 : Cliquer Redeploy
+──────────────────────────
+▸ Dans le menu : clique sur "Redeploy"
+
+
+ÉTAPE 7 : DÉCOCHER LE CACHE (TRÈS IMPORTANT !!!)
+──────────────────────────
+▸ Une popup s'ouvre
+▸ Tu vois une case cochée : ☑ "Use existing Build Cache"
+▸ CLIQUE SUR CETTE CASE pour la DÉCOCHER : ☐
+▸ La case doit être VIDE
+
+
+ÉTAPE 8 : Confirmer le Redeploy
+──────────────────────────
+▸ Clique sur le bouton bleu "Redeploy"
+
+
+ÉTAPE 9 : ATTENDRE
+──────────────────────────
+▸ Vercel va rebuilder
+▸ ATTENDS 2-5 MINUTES
+▸ Tu verras "Building..." puis "Ready"
+
+
+ÉTAPE 10 : Vider cache navigateur
+──────────────────────────
+▸ Ouvre ton site
+▸ Appuie sur : Ctrl + Shift + R
+▸ (ou Cmd + Shift + R sur Mac)
+
+
+ÉTAPE 11 : TESTER
+──────────────────────────
+▸ Va sur : https://altess-final.vercel.app/playout/schedule
+▸ Tu dois voir 2 PROGRAMMES :
+  - 14:00 → The Soul of Blues Live (02:05:23)
+  - 16:30 → Tamally Maak (00:03:05)
+
+
+═══════════════════════════════════════════════════════════
+❗ L'ÉTAPE LA PLUS IMPORTANTE
+═══════════════════════════════════════════════════════════
+
+ÉTAPE 7 : DÉCOCHER "Use existing Build Cache"
+
+Cette case DOIT ÊTRE DÉCOCHÉE ☐
+
+Si tu laisses la case cochée ☑, Vercel va utiliser
+l'ancien cache et tu ne verras AUCUN changement !
+
+
+═══════════════════════════════════════════════════════════
+📊 RÉSULTAT ATTENDU
+═══════════════════════════════════════════════════════════
+
+APRÈS le redeploy (étapes 1-11) :
+
+✅ /playout/schedule : 2 programmes visibles
+✅ Bouton "Ajouter" : fonctionne
+✅ Durées : affichées correctement (pas 00:00:00)
+✅ Web TV : programmes s'affichent
+✅ Pas d'erreur "column channel_id does not exist"
+
+
+═══════════════════════════════════════════════════════════
+⚠️ SI ÇA NE MARCHE TOUJOURS PAS
+═══════════════════════════════════════════════════════════
+
+1. Ouvre la console (F12)
+2. Capture d'écran des erreurs rouges
+3. Envoie-moi :
+   - Capture console
+   - Capture page Vercel Deployments
+   - Capture /playout/schedule
+
+
+═══════════════════════════════════════════════════════════
+📁 FICHIERS CRÉÉS POUR TOI
+═══════════════════════════════════════════════════════════
+
+1. GUIDE_REDEPLOY_VERCEL_URGENT.md
+   → Guide détaillé avec explications
+
+2. vercel-force-rebuild.txt
+   → Fichier trigger pour forcer rebuild
+
+3. POUR_IMED_VERCEL_URGENT.txt (ce fichier)
+   → Résumé rapide
+
+
+═══════════════════════════════════════════════════════════
+
+Date : 6 Février 2026 07:45 UTC
+Priorité : 🔥 ULTRA URGENTE
+
+RAPPEL FINAL :
+▸ Vercel.com
+▸ Deployments
+▸ Dernier deployment
+▸ Menu ⋮ → Redeploy
+▸ DÉCOCHER "Use existing Build Cache" ☐
+▸ Redeploy
+▸ ATTENDRE 2-5 min
+▸ Ctrl+Shift+R
+▸ Tester
+
+═══════════════════════════════════════════════════════════

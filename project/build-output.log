@@ -1,0 +1,17 @@
+
+> nextjs@0.1.7 build
+> NODE_OPTIONS='--max-old-space-size=8192' next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   Creating an optimized production build ...
+Failed to compile.
+
+app/e/[slug]/page.tsx
+EAGAIN: resource temporarily unavailable, readdir
+
+
+> Build failed because of webpack errors

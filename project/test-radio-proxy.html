@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Radio Proxy System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .station-list {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .station-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        .station-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(251, 191, 36, 0.4);
+            transform: translateY(-2px);
+        }
+        .station-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .station-name {
+            font-weight: bold;
+            color: #fbbf24;
+            font-size: 18px;
+        }
+        .station-url {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        button {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status.idle { background: rgba(100, 116, 139, 0.3); color: #94a3b8; }
+        .status.loading { background: rgba(251, 191, 36, 0.3); color: #fbbf24; }
+        .status.playing { background: rgba(34, 197, 94, 0.3); color: #22c55e; }
+        .status.error { background: rgba(239, 68, 68, 0.3); color: #ef4444; }
+        .metadata {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .metadata-title {
+            color: #fbbf24;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .metadata-artist {
+            color: #94a3b8;
+        }
+        .console {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .console-line {
+            margin-bottom: 4px;
+            padding: 4px;
+        }
+        .console-line.info { color: #60a5fa; }
+        .console-line.success { color: #22c55e; }
+        .console-line.error { color: #ef4444; }
+        .console-line.warning { color: #fbbf24; }
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📡 Radio Proxy System Test</h1>
+        <p class="subtitle">Test du système de proxy avec User-Agent mobile et résolution CORS/SSL</p>
+
+        <div class="volume-control">
+            <span>🔊 Volume:</span>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+            <span id="volumeValue">50%</span>
+        </div>
+
+        <div class="station-list" id="stationList">
+            <!-- Stations will be dynamically added here -->
+        </div>
+
+        <h2 style="color: #fbbf24; margin-top: 30px;">📋 Console de Débogage</h2>
+        <div class="console" id="console"></div>
+    </div>
+
+    <audio id="audioPlayer" preload="auto"></audio>
+
+    <script>
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // Will be replaced dynamically
+
+        const testStations = [
+            {
+                name: 'BBC World Service',
+                url: 'http://stream.live.vc.bbcmedia.co.uk/bbc_world_service',
+                type: 'Grande station internationale'
+            },
+            {
+                name: 'Radio Orient',
+                url: 'http://radioorient.ice.infomaniak.ch/radioorient-128.mp3',
+                type: 'Station locale (Mobile-Only)'
+            },
+            {
+                name: 'Radio Mosaïque FM',
+                url: 'http://radio.mosaiquefm.net:8000/mosalive',
+                type: 'Station locale (Mobile-Only)'
+            },
+            {
+                name: 'France Inter',
+                url: 'https://icecast.radiofrance.fr/franceinter-midfi.mp3',
+                type: 'HTTPS natif'
+            },
+            {
+                name: 'RTL',
+                url: 'http://streaming.radio.rtl.fr/rtl-1-44-128',
+                type: 'HTTP avec redirections'
+            }
+        ];
+
+        const audio = document.getElementById('audioPlayer');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeValue = document.getElementById('volumeValue');
+        const consoleDiv = document.getElementById('console');
+        const stationList = document.getElementById('stationList');
+
+        let currentPlayingStation = null;
+        let metadataIntervals = new Map();
+
+        // Volume control
+        volumeSlider.addEventListener('input', (e) => {
+            const volume = e.target.value;
+            audio.volume = volume / 100;
+            volumeValue.textContent = volume + '%';
+        });
+
+        audio.volume = 0.5;
+
+        function log(message, type = 'info') {
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            line.textContent = `[${timestamp}] ${message}`;
+            consoleDiv.appendChild(line);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            console.log(message);
+        }
+
+        function getProxiedUrl(streamUrl) {
+            // Get base URL from current page or use placeholder
+            const baseUrl = window.location.origin.includes('localhost')
+                ? 'YOUR_SUPABASE_URL' // Replace with your Supabase URL
+                : SUPABASE_URL;
+
+            const encodedUrl = encodeURIComponent(streamUrl);
+            return `${baseUrl}/functions/v1/stream-radio-proxy?url=${encodedUrl}`;
+        }
+
+        async function fetchMetadata(streamUrl, stationId) {
+            try {
+                const baseUrl = window.location.origin.includes('localhost')
+                    ? 'YOUR_SUPABASE_URL'
+                    : SUPABASE_URL;
+
+                const encodedUrl = encodeURIComponent(streamUrl);
+                const response = await fetch(`${baseUrl}/functions/v1/get-radio-metadata?url=${encodedUrl}`);
+
+                if (response.ok) {
+                    const metadata = await response.json();
+                    updateMetadata(stationId, metadata);
+                    log(`📻 Métadonnées: ${metadata.title} - ${metadata.artist}`, 'info');
+                }
+            } catch (error) {
+                log(`❌ Erreur métadonnées: ${error.message}`, 'error');
+            }
+        }
+
+        function updateMetadata(stationId, metadata) {
+            const metadataDiv = document.getElementById(`metadata-${stationId}`);
+            if (metadataDiv && metadata) {
+                metadataDiv.innerHTML = `
+                    <div class="metadata-title">${metadata.title || 'En cours de lecture'}</div>
+                    <div class="metadata-artist">${metadata.artist || 'Radio en direct'}</div>
+                `;
+            }
+        }
+
+        function updateStatus(stationId, status, statusText) {
+            const statusSpan = document.getElementById(`status-${stationId}`);
+            if (statusSpan) {
+                statusSpan.className = `status ${status}`;
+                statusSpan.textContent = statusText;
+            }
+        }
+
+        async function playStation(station, stationId) {
+            try {
+                // Stop current playing station
+                if (currentPlayingStation && currentPlayingStation !== stationId) {
+                    stopStation(currentPlayingStation);
+                }
+
+                log(`▶️ Lecture de ${station.name}...`, 'info');
+                updateStatus(stationId, 'loading', 'Connexion...');
+
+                // Stop any existing playback
+                audio.pause();
+                audio.src = '';
+
+                // Get proxied URL
+                const proxiedUrl = getProxiedUrl(station.url);
+                log(`🔗 URL proxifiée: ${proxiedUrl}`, 'info');
+
+                // Load new stream
+                audio.src = proxiedUrl;
+                audio.load();
+
+                // Wait for audio to be ready
+                await audio.play();
+
+                log(`✅ ${station.name} en lecture!`, 'success');
+                updateStatus(stationId, 'playing', '🔴 EN DIRECT');
+                currentPlayingStation = stationId;
+
+                // Start metadata fetching
+                fetchMetadata(station.url, stationId);
+                const interval = setInterval(() => {
+                    fetchMetadata(station.url, stationId);
+                }, 30000);
+                metadataIntervals.set(stationId, interval);
+
+            } catch (error) {
+                log(`❌ Erreur lecture ${station.name}: ${error.message}`, 'error');
+                updateStatus(stationId, 'error', 'Erreur');
+            }
+        }
+
+        function stopStation(stationId) {
+            audio.pause();
+            updateStatus(stationId, 'idle', 'Arrêté');
+
+            // Clear metadata interval
+            if (metadataIntervals.has(stationId)) {
+                clearInterval(metadataIntervals.get(stationId));
+                metadataIntervals.delete(stationId);
+            }
+
+            if (currentPlayingStation === stationId) {
+                currentPlayingStation = null;
+            }
+            log(`⏹️ Station arrêtée`, 'warning');
+        }
+
+        // Initialize stations
+        testStations.forEach((station, index) => {
+            const stationId = `station-${index}`;
+            const card = document.createElement('div');
+            card.className = 'station-card';
+            card.innerHTML = `
+                <div class="station-header">
+                    <div>
+                        <div class="station-name">${station.name}</div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${station.type}</div>
+                    </div>
+                    <span class="status idle" id="status-${stationId}">Idle</span>
+                </div>
+                <div class="station-url">${station.url}</div>
+                <div class="controls">
+                    <button onclick="playStation(testStations[${index}], '${stationId}')">▶️ Lecture</button>
+                    <button onclick="stopStation('${stationId}')">⏹️ Stop</button>
+                </div>
+                <div class="metadata" id="metadata-${stationId}">
+                    <div class="metadata-title">Aucune métadonnée</div>
+                </div>
+            `;
+            stationList.appendChild(card);
+        });
+
+        // Audio event listeners
+        audio.addEventListener('error', (e) => {
+            log(`❌ Erreur audio: ${e.target.error?.message || 'Unknown error'}`, 'error');
+            if (currentPlayingStation) {
+                updateStatus(currentPlayingStation, 'error', 'Erreur');
+            }
+        });
+
+        audio.addEventListener('waiting', () => {
+            log(`⏳ Buffering...`, 'warning');
+        });
+
+        audio.addEventListener('playing', () => {
+            log(`✅ Lecture en cours`, 'success');
+        });
+
+        log('🚀 Système de test initialisé', 'success');
+        log('📡 Proxy configuré avec User-Agent mobile', 'info');
+        log('🔒 Support HTTPS/HTTP avec résolution CORS', 'info');
+    </script>
+</body>
+</html>
